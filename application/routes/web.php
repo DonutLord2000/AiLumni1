@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\Admin\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,4 +19,8 @@ Route::middleware([
 });
 
 route::get('/home', [IndexController::class,'index']);
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
+    Route::resource('users', UserController::class);
+});
 
